@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ContentSection2 from "@/app/(pages)/solution/content-2";
 import ContentSection1 from "@/app/(pages)/solution/content-1";
+import ContentSection3 from "@/app/(pages)/solution/content-3";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 
 export const metadata: Metadata = {
@@ -46,8 +47,8 @@ export default function VerifyProduct() {
         >
           {" "}
           <ContentSection1 />
+          <ContentSection3 />
           <ContentSection2 />
-          <ContentSection1 />
         </AnimatedGroup>
       </div>
     </>

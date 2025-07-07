@@ -162,17 +162,21 @@ export default function DataTable() {
             <Button
               onClick={async () => {
                 try {
-                    const rawHashes = hashes.map((item) => item.hash);
-                    const res = await fetch("http://localhost:3000/api/upload-hashes", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json"},
-                    body: JSON.stringify({ hashes: rawHashes }),
-                  });
+                  const rawHashes = hashes.map((item) => item.hash);
+                  const res = await fetch(
+                    "http://localhost:3000/api/upload-hashes",
+                    {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ hashes: rawHashes }),
+                    }
+                  );
 
-                  const txHashes: string[] = await res.json();
-                  const hashesWithTx = hashes.map((item, i) => ({
+                  const txHash: string = await res.json(); // Single tx hash returned
+                  const hashesWithTx = hashes.map((item) => ({
+
                     ...item,
-                    txHash: txHashes[i],
+                    txHash,
                   }));
 
                   setHashes(hashesWithTx);
@@ -206,8 +210,10 @@ export default function DataTable() {
             {hashes.map((row, i) => {
               if (!row.txHash) return null;
 
-              const qrPayload = getRowForQR(row.row, columns);
-              const Verify = `www.seemo.com/verify/companyA/${row.txHash}`;
+              const qrPayload = {
+                product_hash: row.hash,
+                tx_hash: row.txHash,
+              };
 
               return (
                 <div
@@ -215,14 +221,14 @@ export default function DataTable() {
                   className="flex flex-col items-center justify-center p-2 bg-white border rounded-md text-xs min-w-[120px]"
                 >
                   <QRCodeSVG
-                    value={JSON.stringify({ ...qrPayload, Verify })}
+                    value={JSON.stringify(qrPayload)}
                     size={110}
                     ref={(el) => {
                       qrRefs.current[i] = el;
                     }}
                   />
                   <pre className="mt-2 text-black">
-                    {row.txHash.slice(0, 12)}...
+                    {row.hash.slice(0, 10)}...
                   </pre>
                 </div>
               );
