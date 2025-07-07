@@ -5,13 +5,13 @@ export default function ContentSection1() {
     <section className="py-16 md:py-32">
       <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
         <h2 className="relative z-10 max-w-xl text-4xl font-medium lg:text-5xl">
-          The Lyra ecosystem brings together our models.
+          EARN your customers' trust FOREVER
         </h2>
         <div className="grid gap-6 sm:grid-cols-2 md:gap-12 lg:gap-24">
           <div className="relative mb-6 sm:mb-0">
             <div className="bg-linear-to-b aspect-76/59 relative rounded-2xl from-zinc-300 to-transparent p-px dark:from-zinc-700">
               <Image
-                src="/file.svg"
+                src="/ai-generated-8701393_1280.png"
                 className="hidden rounded-[15px] dark:block"
                 alt="payments illustration dark"
                 width={1207}
@@ -29,32 +29,28 @@ export default function ContentSection1() {
 
           <div className="relative space-y-4">
             <p className="text-muted-foreground">
-              Gemini is evolving to be more than just the models.{" "}
+              In today's market, transparency isn’t just a value—it’s a competitive edge. Our product verification platform, built on the secure and sustainable Cardano blockchain,allows your company to {" "}
               <span className="text-accent-foreground font-bold">
-                It supports an entire ecosystem
-              </span>{" "}
-              — from products innovate.
+                prove product authenticity, track supply chains in real-time, and build lasting trust with customers.
+              </span>{/* {" "}
+              — from products innovate. */}
             </p>
             <p className="text-muted-foreground">
-              It supports an entire ecosystem — from products to the APIs and
-              platforms helping developers and businesses innovate
+              By offering verifiable data at every stage, you protect your brand, fight counterfeits, and meet rising consumer demands for accountability. It's more than innovation—it's future-ready integrity.
             </p>
 
             <div className="pt-6">
               <blockquote className="border-l-4 pl-4">
                 <p>
-                  Using TailsUI has been like unlocking a secret design
-                  superpower. It's the perfect fusion of simplicity and
-                  versatility, enabling us to create UIs that are as stunning as
-                  they are user-friendly.
+                  Making the world work better for all.
                 </p>
 
                 <div className="mt-6 space-y-3">
-                  <cite className="block font-medium">John Doe, CEO</cite>
+                  <cite className="block font-medium">CARDANO</cite>
                   <img
                     className="h-5 w-fit dark:invert"
-                    src="https://html.tailus.io/blocks/customers/nvidia.svg"
-                    alt="Nvidia Logo"
+                    src="https://user-images.githubusercontent.com/31596855/34464591-2b975084-ee54-11e7-8ce3-6be97ac66183.png"
+                    alt="cardano logo"
                     height="20"
                     width="auto"
                   />

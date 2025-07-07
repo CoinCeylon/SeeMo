@@ -47,8 +47,8 @@ export default function VerifyProduct() {
         >
           {" "}
           <ContentSection1 />
-          <ContentSection2 />
           <ContentSection3 />
+          <ContentSection2 />
         </AnimatedGroup>
       </div>
     </>
