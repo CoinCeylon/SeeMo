@@ -51,20 +51,20 @@ export default function ContentSection2() {
               className="bg-linear-to-l z-1 to-background absolute inset-0 hidden from-transparent to-55% md:block"
             ></div>
             <div className="border-border/50 relative rounded-2xl border border-dotted p-2">
-              <Image
-                src="/charts.png"
+              {/* <Image
+                src="/cardano logo.jpg"
                 className="hidden rounded-[12px] dark:block"
                 alt="payments illustration dark"
-                width={1207}
+                width={500}
                 height={450}
               />
               <Image
-                src="/charts-light.png"
+                src="/cardano logo.jpg"
                 className="rounded-[12px] shadow dark:hidden"
                 alt="payments illustration light"
-                width={1207}
+                width={500}
                 height={450}
-              />
+              /> */}
             </div>
           </div>
         </div>

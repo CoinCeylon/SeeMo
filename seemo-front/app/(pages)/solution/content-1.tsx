@@ -18,7 +18,7 @@ export default function ContentSection1() {
                 height={929}
               />
               <Image
-                src="/payments-light.png"
+                src="/ai-generated-8701393_1280.png"
                 className="rounded-[15px] shadow dark:hidden"
                 alt="payments illustration light"
                 width={1207}
