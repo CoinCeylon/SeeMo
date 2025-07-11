@@ -29,7 +29,6 @@ app.use(express.static(path.join(__dirname)));
 app.use(bodyParser.json());
 app.use(cors());
 
-
 //sensitive
 //derived private key here:
 const privateKeyHex = process.env.PRIVATE_KEY;
