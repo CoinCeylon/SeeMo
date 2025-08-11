@@ -30,14 +30,12 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //sensitive
-//derived private key here:
+//derived private
 const privateKeyHex = process.env.PRIVATE_KEY;
 
 app.post("/api/upload-hashes", async (req, res) => {
     try {
         const hashes = req.body.hashes;
-
-        //console.log("✅ Received hashes from frontend:", hashes);
 
         const lucid = await Lucid.new(
             new Blockfrost(
@@ -51,7 +49,6 @@ app.post("/api/upload-hashes", async (req, res) => {
 
         lucid.selectWalletFromPrivateKey(privateKeyHex);
         const senderAddress = await lucid.wallet.address();
-        //console.log("✅ Using wallet address:", senderAddress);
 
 
         const metadata = {};
@@ -62,7 +59,7 @@ app.post("/api/upload-hashes", async (req, res) => {
             };
         });
 
-            console.log("✅ Metadata to attach:", metadata);
+            console.log("Metadata to attach:", metadata);
 
             const tx = await lucid
                 .newTx()
@@ -70,17 +67,17 @@ app.post("/api/upload-hashes", async (req, res) => {
                 .attachMetadata(1234, metadata)
                 .complete();
 
-            console.log("✅ Transaction built. Signing...");
+            console.log("Transaction built. Signing...");
 
             const signedTx = await tx.sign().complete();
 
-            console.log("✅ Transaction signed. Submitting...");
+            console.log("Transaction signed. Submitting...");
 
             const txHash = await signedTx.submit();
           
 
-            console.log("✅ Transaction submitted! Hash:", txHash);
-            console.log("🔍 Preparing MongoDB insertion...");
+            console.log("Transaction submitted! Hash:", txHash);
+            console.log("Preparing MongoDB insertion...");
 
             const db = client.db("product_auth");
             const transactions = db.collection("transactions");
@@ -93,12 +90,12 @@ app.post("/api/upload-hashes", async (req, res) => {
             };
 
             const result = await transactions.insertOne(doc);
-            console.log("✅ Data inserted to MongoDB:", result.insertedId);
+            console.log("Data inserted to MongoDB:", result.insertedId);
 
         res.json([txHash]);
 
     } catch (err) {
-        console.error("❌ Error submitting transaction:", err);
+        console.error("Error submitting transaction:", err);
         res.status(500).json({ error: err.message });
     }
 });
@@ -122,7 +119,6 @@ app.post("/api/lookup/:txHash", async (req, res) => {
 
         if (!response.ok) {
             const text = await response.text();
-            //console.error("❌ Blockfrost error:", text);
             return res.status(response.status).json({
                 status: "Invalid",
                 type: "Invalid Unique Code",
@@ -151,7 +147,7 @@ app.post("/api/lookup/:txHash", async (req, res) => {
             const date = now.toISOString().split("T")[0]; // YYYY-MM-DD
             const time = now.toTimeString().split(" ")[0].slice(0, 5); // HH:MM (24h format)
 
-            // Get IP and geolocation
+            // Get IP and geolocation - test
             const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
             const geo = geoip.lookup(ip);
             const location = geo ? `${geo.city || "Unknown"}, ${geo.country}` : "Unknown";
@@ -194,7 +190,6 @@ app.post("/api/lookup/:txHash", async (req, res) => {
         }
 
     } catch (err) {
-        //console.error("❌ Lookup error:", err);
         res.status(500).json({ status: "Error", type: "Not found", error: err.message });
     }
 });
@@ -204,13 +199,13 @@ const PORT = process.env.PORT || 3000;
 async function startServer() {
     try {
         await client.connect();
-        console.log("✅ Connected to MongoDB cluster.");
+        console.log("Connected to MongoDB cluster.");
 
         app.listen(PORT, () => {
-            console.log(`✅ Server running on http://localhost:${PORT}`);
+            console.log(`Server running on http://localhost:${PORT}`);
         });
     } catch (err) {
-        console.error("❌ Failed to connect to MongoDB:", err);
+        console.error("Failed to connect to MongoDB:", err);
         process.exit(1);
     }
 }
